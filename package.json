@@ -1,0 +1,26 @@
+{
+  "name": "textclassifier",
+  "version": "0.0.1",
+  "description": "textClassifier",
+  "main": "server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server/server.js"
+  },
+  "author": "jgs",
+  "dependencies": {
+    "@tensorflow-models/toxicity": "^1.2.2",
+    "@tensorflow/tfjs": "^2.7.0",
+    "@tensorflow/tfjs-node": "^2.7.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "fast-csv": "^4.3.5",
+    "mongodb": "^3.6.3",
+    "multer": "^1.4.2",
+    "nodemon": "^2.0.6"
+  },
+  "engines": {
+    "node": "10.x"
+  }
+}
