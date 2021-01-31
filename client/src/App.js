@@ -26,7 +26,7 @@ function App() {
       axios({
           method: 'post',
           //url: 'http://localhost:8000/api/',    //DEVELOPMENT
-          url: window.location.origin+'/api/new',  //PRODUCTION
+          url: window.location.origin+'/api/',  //PRODUCTION
           data: {
             text,
             threshold
