@@ -21,21 +21,19 @@ function Classify() {
       event.preventDefault();
       axios({
           method: 'post',
-          url: 'http://localhost:8000/api/',    //DEVELOPMENT
-          //url: window.location.origin+'/api/',  //PRODUCTION
+          //url: 'http://localhost:8000/api/',    //DEVELOPMENT
+          url: window.location.origin+'/api/',  //PRODUCTION
           data: {
             text,
             threshold
           }
         })
       .then(function (response) {
-          console.log(response['data']);
           let output = [];
           output.push(text);
           for( var i = 0 ; i < response['data'].length ; i++){
             output.push(response['data'][i]['results'][0]['match'])
           }
-          console.log(output);
           setTheResults([...theResults, output]);
           console.log(theResults);
           setText('');

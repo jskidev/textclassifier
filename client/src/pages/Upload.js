@@ -16,8 +16,8 @@ function Upload() {
     var formData = new FormData();
     formData.append('dataFile', files);
     axios.post(
-      'http://localhost:8000/api/multi',    //DEVELOPMENT
-      //window.location.origin+'/api/multi',  //PRODUCTION
+      //'http://localhost:8000/api/multi',    //DEVELOPMENT
+      window.location.origin+'/api/multi',  //PRODUCTION
       formData, {
       headers: {
         'content-type': 'multipart/form-data'
