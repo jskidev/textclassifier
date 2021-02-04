@@ -9,8 +9,32 @@ function Home() {
 
     useEffect(() => {
         const renderer = new THREE.WebGLRenderer();
-        renderer.setSize( window.innerWidth, window.innerHeight );
-        document.getElementById('App').appendChild( renderer.domElement );
+        const viewHeight = document.getElementById('App').clientHeight;
+        const getStartedHeight = document.getElementById('GetStarted').clientHeight;
+        const headerheight = document.getElementById('Header').clientHeight;
+
+        var canvasHeight;
+        var canvasWidth;
+
+        if(window.innerWidth < 800){
+            canvasHeight = viewHeight - getStartedHeight - headerheight;
+            canvasWidth = window.innerWidth - getStartedHeight;
+        } else if (window.innerWidth < 500) {
+            canvasHeight = viewHeight - getStartedHeight - headerheight;
+            canvasWidth = window.innerWidth;
+        } else if (window.innerWidth < 300){
+            canvasHeight = viewHeight - getStartedHeight - (headerheight * 2);
+            canvasWidth = window.innerWidth;
+        } else {
+            canvasHeight = viewHeight - getStartedHeight - headerheight;
+            canvasWidth = window.innerWidth - getStartedHeight - headerheight;
+        }
+
+        renderer.setSize( canvasWidth, canvasHeight );
+        console.log(window.innerWidth, window.innerHeight, getStartedHeight - headerheight)
+
+        document.getElementById('GetStarted').parentNode.insertBefore(renderer.domElement, document.getElementById('GetStarted'));
+        //document.getElementById('App').prepend( renderer.domElement );
 
         const camera = new THREE.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 1, 500 );
         camera.position.set( 0, 0, 100 );
@@ -18,6 +42,7 @@ function Home() {
 
         const controls = new OrbitControls( camera, renderer.domElement );
         controls.enableZoom = false;
+        controls.enablePan = false;
 
         const scene = new THREE.Scene();
         scene.background = new THREE.Color( '#FFF' );
@@ -35,10 +60,10 @@ function Home() {
         scene.add( lights[ 1 ] );
         scene.add( lights[ 2 ] );
 
-        const geometry = new THREE.IcosahedronGeometry( 12, 1 );
+        const geometry = new THREE.IcosahedronGeometry( 15 , 1 );
 
-        const lineMaterial = new THREE.LineBasicMaterial( { color: 0xffffff, transparent: true, opacity: 0.5, linewidth: 5 } );
-        const meshMaterial = new THREE.MeshPhongMaterial( { color: 0x156289, emissive: 0x072534, side: THREE.DoubleSide, flatShading: true } );
+        const lineMaterial = new THREE.LineBasicMaterial( { color: 0xffffff, transparent: true, opacity: 0.5, linewidth: 2 } );
+        const meshMaterial = new THREE.MeshPhongMaterial( { color: '#e74c3c', emissive: '#c0392b', side: THREE.DoubleSide, flatShading: true } );
 
         const mesh = new THREE.Mesh( geometry, meshMaterial );
         var line = new THREE.LineSegments( geometry, lineMaterial );
@@ -63,8 +88,12 @@ function Home() {
 
     return (
     <div className="App" id="App">
-        Home
-        <button onClick={handleClick}>get started</button>
+        <div className="Header" id="Header">
+            <h1 className="welcomeHeader">Text Lab</h1>
+        </div>
+        <div className="GetStarted" id="GetStarted">
+            <button className="primaryButton" onClick={handleClick}>GET STARTED</button>
+        </div>
     </div>
     );
 }
