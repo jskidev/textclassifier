@@ -62,8 +62,8 @@ function Home() {
 
         const geometry = new THREE.IcosahedronGeometry( 15 , 1 );
 
-        const lineMaterial = new THREE.LineBasicMaterial( { color: 0xffffff, transparent: true, opacity: 0.5, linewidth: 2 } );
-        const meshMaterial = new THREE.MeshPhongMaterial( { color: '#e74c3c', emissive: '#c0392b', side: THREE.DoubleSide, flatShading: true } );
+        const lineMaterial = new THREE.LineBasicMaterial( { color: 0xffffff, transparent: true, opacity: 1, linewidth: 2 } );
+        const meshMaterial = new THREE.MeshPhongMaterial( { color: '#e74c3c', emissive: '#c0392b', side: THREE.DoubleSide, flatShading: true, polygonOffset: true, polygonOffsetFactor: 1, polygonOffsetUnits: 1} );
 
         const mesh = new THREE.Mesh( geometry, meshMaterial );
         var line = new THREE.LineSegments( geometry, lineMaterial );
