@@ -93,6 +93,63 @@ p {
   padding-top: 20px;
 }
 
+.manualForm {
+  text-align: left;
+}
+
+.manualForm label, .manualForm input {
+  display: block;
+}
+
+.manualForm input, textarea {
+  margin-bottom: 1rem;
+}
+
+.manualForm input {
+  height: 44px;
+  width: 100%;
+  border-radius: 4px;
+  border: solid 1px #e0e0e0;
+  -webkit-appearance: none;
+  text-align: center;
+}
+
+.manualForm textarea {
+  border-radius: 4px;
+  border: solid 1px #e0e0e0;
+  -webkit-appearance: none;
+  width: 100%;
+}
+
+.manualForm input:focus, textarea:focus {
+  outline: none;
+  border: solid 1px #e74c3c;
+  box-shadow: 10px 10px 20px -10px rgba(231, 76, 60, 0.2);
+  -webkit-appearance: none;
+}
+
+th {
+  border-bottom: solid 1px black;
+}
+
+th, td {
+  padding: 10px;
+}
+
+table {
+  background-color: #fff;
+  padding: 50px;
+  border-radius: 4px;
+  text-align: center;
+  margin: 20px;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
 /* MEDIA QUERIES */
 
 @media only screen and (max-width: 466px) {

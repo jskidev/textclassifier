@@ -8,6 +8,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 function Home() {
 
     useEffect(() => {
+        document.body.style.overflowY = 'hidden';
         const renderer = new THREE.WebGLRenderer();
         const viewHeight = document.getElementById('App').clientHeight;
         const getStartedHeight = document.getElementById('GetStarted').clientHeight;
