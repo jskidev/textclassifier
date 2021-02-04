@@ -58,6 +58,7 @@ canvas {
   padding: 50px;
   border-radius: 4px;
   text-align: center;
+  margin: 20px;
 }
 
 .buttonLeft {
@@ -83,7 +84,24 @@ h2 {
   padding-bottom: 20px;
 }
 
+h4 {
+  font-weight: 400;
+}
+
 p {
   margin: 0;
   padding-top: 20px;
+}
+
+/* MEDIA QUERIES */
+
+@media only screen and (max-width: 466px) {
+  .buttonLeft {
+    margin-right: 1em;
+    margin-left: 1em;
+  }
+  .buttonRight {
+    margin-left: 1em;
+    margin-right: 1em;
+  }
 }
