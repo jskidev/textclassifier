@@ -7,8 +7,15 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 function Home() {
 
+    const [modalOpen, setModalOpen] = useState(false);
+
     useEffect(() => {
+        //Override styling for this individual page
         document.body.style.overflowY = 'hidden';
+        document.body.style.backgroundColor = '#FFFFFF';
+        document.getElementById('root').style.backgroundColor = '#FFFFFF';
+        document.children[0].style.backgroundColor = '#FFFFFF';
+
         const renderer = new THREE.WebGLRenderer();
         const viewHeight = document.getElementById('App').clientHeight;
         const getStartedHeight = document.getElementById('GetStarted').clientHeight;
@@ -28,7 +35,7 @@ function Home() {
             canvasWidth = window.innerWidth;
         } else {
             canvasHeight = viewHeight - getStartedHeight - headerheight;
-            canvasWidth = window.innerWidth - getStartedHeight - headerheight;
+            canvasWidth = window.innerWidth - getStartedHeight - (headerheight*2);
         }
 
         renderer.setSize( canvasWidth, canvasHeight );
@@ -87,15 +94,41 @@ function Home() {
         window.location = '/new'
     }
 
+    const handleHelp = () => {
+        setModalOpen(!modalOpen);
+    }
+
     return (
-    <div className="App" id="App">
-        <div className="Header" id="Header">
-            <h1 className="welcomeHeader">Text Lab</h1>
-        </div>
-        <div className="GetStarted" id="GetStarted">
-            <button className="primaryButton" onClick={handleClick}>GET STARTED</button>
-        </div>
-    </div>
+        <>
+            <div className="App" id="App">
+                <div className="Header" id="Header">
+                    <h1 className="welcomeHeader">Text Lab</h1>
+                </div>
+                <div className="GetStarted" id="GetStarted">
+                    <button className="secondaryButton" onClick={handleHelp}>HELP</button>
+                    <button className="primaryButton" onClick={handleClick}>GET STARTED</button>
+                </div>
+            </div>
+            {modalOpen &&
+                <div className="backdrop">
+                    <div className="content">
+                        <div>
+                            <p>
+                                This tool will automatically analyse your text for toxicity using machine learning. 
+                                It assesses for identity attacks, insults, obscenity, severe toxicity, sexual explicitness, threats, and toxicity.
+                            </p>
+                            <p>
+                                Let the tool analyse single sentences at a time, or upload a csv document and have your text analysed in bulk.
+                            </p>
+                            <p>
+                                Customise the confidence threshold of the tool to cater to your needs.
+                            </p>
+                        </div>
+                        <button className="secondaryButton" onClick={handleHelp}>CLOSE</button>
+                    </div>
+                </div>
+            }
+        </>
     );
 }
 

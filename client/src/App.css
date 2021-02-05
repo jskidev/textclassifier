@@ -36,6 +36,19 @@
   box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%);
 }
 
+.secondaryButton {
+  background-color: #fff;
+  color: #e74c3c;
+  min-width: 100px;
+  height: 44px;
+  border: solid 1px  #e74c3c;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: .67em 0;
+  outline: none;
+  margin-right: 10px;
+}
+
 h1 {
   margin: 0px;
 }
@@ -79,75 +92,20 @@ canvas {
   cursor: pointer;
 }
 
-h2 {
-  margin: 0;
-  padding-bottom: 20px;
-}
-
-h4 {
-  font-weight: 400;
-}
-
-p {
-  margin: 0;
-  padding-top: 20px;
-}
-
-.manualForm {
-  text-align: left;
-}
-
-.manualForm label, .manualForm input {
-  display: block;
-}
-
-.manualForm input, textarea {
-  margin-bottom: 1rem;
-}
-
-.manualForm input {
-  height: 44px;
+.backdrop {
+  background-color: #e74c3c;
+  z-index: 9999999;
+  height: 100%;
   width: 100%;
-  border-radius: 4px;
-  border: solid 1px #e0e0e0;
-  -webkit-appearance: none;
-  text-align: center;
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.manualForm textarea {
-  border-radius: 4px;
-  border: solid 1px #e0e0e0;
-  -webkit-appearance: none;
-  width: 100%;
-}
-
-.manualForm input:focus, textarea:focus {
-  outline: none;
-  border: solid 1px #e74c3c;
-  box-shadow: 10px 10px 20px -10px rgba(231, 76, 60, 0.2);
-  -webkit-appearance: none;
-}
-
-th {
-  border-bottom: solid 1px black;
-}
-
-th, td {
-  padding: 10px;
-}
-
-table {
-  background-color: #fff;
-  padding: 50px;
-  border-radius: 4px;
-  text-align: center;
-  margin: 20px;
-}
-
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
+.backdrop div {
+  padding: 20px;
 }
 
 /* MEDIA QUERIES */

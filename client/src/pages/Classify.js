@@ -1,4 +1,4 @@
-import '../App.css';
+import './Classify.css';
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -8,6 +8,7 @@ function Classify() {
   const [text, setText] = useState('');
   const [threshold, setThreshold] = useState(0.8);
   const [theResults, setTheResults] = useState([]);
+  const [spinner, setSpinner] = useState(false);
 
   const handleInputChange = (event) => {
     setText(event.target.value)
@@ -17,7 +18,12 @@ function Classify() {
     setThreshold(event.target.value)
   }
 
+  const handleNewClick = () => {
+    window.location = '/new'
+  }
+
   const handleSubmit = (event) => {
+      setSpinner(true);
       event.preventDefault();
       axios({
           method: 'post',
@@ -37,26 +43,39 @@ function Classify() {
           setTheResults([...theResults, output]);
           console.log(theResults);
           setText('');
+          setSpinner(false);
       })
       .catch(function (error) {
           console.log(error);
+          setSpinner(false);
       })
   }
 
   return (
-    <div className="startContainer">
-      <div className="startContent">
-        <form className="manualForm" onSubmit={handleSubmit}>
-          <label for="text">Sentence</label>
-          <textarea name="text" placeholder="test" required onChange={handleInputChange} value={text} id="text" rows='10' cols='50' />
-          <label for="threshold">Confidence threshold</label>
-          <input name="threshold" type="number" min="0" max="1" step="0.01" id="threshold" onChange={handleThresholdChange} value={threshold}/>
-          <button className="primaryButton">Classify</button>
-        </form>
+    <div className="container">
+        <div className="content">
+          <form className="manualForm" onSubmit={handleSubmit}>
+            <label for="text">Sentence</label>
+            <textarea name="text" placeholder="test" required onChange={handleInputChange} value={text} id="text" rows='10' cols='50' />
+            <label for="threshold">Confidence threshold</label>
+            <input name="threshold" type="number" min="0" max="1" step="0.01" id="threshold" onChange={handleThresholdChange} value={threshold}/>
+            <button className={spinner ? 'primaryButton submitted' : 'primaryButton'}>
+              {
+                spinner ?
+                <span class="spinner"></span>
+                : 'Classify'
+              }
+            </button>
+          </form>
+          <p className="pb20">
+              <button className="linkButton" onClick={handleNewClick}>back to method</button>
+          </p>
+        </div>
+      <div className="fullWidth">
       </div>
-      
         {  
             theResults.length > 0 ?
+            <div className="overflow">
               <table>
                   <thead>
                       <tr>
@@ -90,6 +109,7 @@ function Classify() {
                         )
                       }
               </table>
+            </div>
             : ''
         }
       </div>
